@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Luna's Rainy Morning</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="story-panel" aria-label="Chapter progress">
+        <div>
+          <p class="eyebrow">Chapter 1</p>
+          <h1>A Rainy Morning</h1>
+          <p id="scene-summary" class="scene-summary"></p>
+        </div>
+        <div class="controls">
+          <button id="reset-button" class="pill-button" type="button">Reset story</button>
+          <button id="hint-toggle" class="pill-button" type="button" aria-pressed="false">Hints off</button>
+          <button id="speak-toggle" class="pill-button" type="button" aria-pressed="true">Voice on</button>
+        </div>
+      </section>
+
+      <section class="game-layout">
+        <aside class="chapter-map" aria-label="Scene list">
+          <p class="panel-label">Scenes</p>
+          <div id="scene-list" class="scene-list"></div>
+        </aside>
+
+        <section class="stage-card" aria-label="Interactive Spanish scene">
+          <div id="scene-stage" class="scene-stage" aria-live="polite"></div>
+          <div class="caption-tray">
+            <div>
+              <p id="speaker-name" class="speaker-name">Luna</p>
+              <p id="caption-text" class="caption-text">Tap glowing objects to hear Spanish in context.</p>
+              <p id="english-hint" class="english-hint" hidden></p>
+            </div>
+            <div class="caption-actions">
+              <button id="translate-button" class="caption-button" type="button" aria-pressed="false">Translate</button>
+              <button id="replay-button" class="caption-button compact" type="button" aria-label="Replay Spanish narration">Say</button>
+            </div>
+          </div>
+        </section>
+
+        <aside class="inventory-panel" aria-label="Inventory">
+          <p class="panel-label">Inventory</p>
+          <div id="inventory-list" class="inventory-list"></div>
+          <p id="inventory-help" class="inventory-help">Pick up useful objects from the scene.</p>
+        </aside>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
