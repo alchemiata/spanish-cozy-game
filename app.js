@@ -546,6 +546,7 @@ const scenes = [
         w: 14,
         h: 40,
         image: greenhouseAsset("luna", "assets/greenhouse-luna.png"),
+        solvedImage: greenhouseAsset("lunaHappy", "assets/greenhouse-luna-happy.png"),
         lines: ["Luna mira la plantita.", "Luna quiere ayudar."],
         englishLines: ["Luna looks at the little plant.", "Luna wants to help."]
       },
@@ -558,6 +559,7 @@ const scenes = [
         w: 12,
         h: 25,
         image: greenhouseAsset("seedling", "assets/greenhouse-seedling.png"),
+        solvedImage: greenhouseAsset("seedlingHappy", "assets/greenhouse-seedling-happy.png"),
         lines: ["La plantita tiene sed.", "Sus hojas están caídas."],
         englishLines: ["The little plant is thirsty.", "Its leaves are drooping."]
       },
@@ -733,9 +735,10 @@ function findHotspot(id) {
   return scenes.flatMap((scene) => scene.hotspots).find((hotspot) => hotspot.id === id);
 }
 
-function hotspotVisual(hotspot) {
-  if (hotspot.image) {
-    return `<img class="asset-sprite" src="${hotspot.image}" alt="" draggable="false" />`;
+function hotspotVisual(hotspot, solved = false) {
+  const image = solved && hotspot.solvedImage ? hotspot.solvedImage : hotspot.image;
+  if (image) {
+    return `<img class="asset-sprite" src="${image}" alt="" draggable="false" />`;
   }
   return iconMarkup[hotspot.icon] || "";
 }
@@ -762,7 +765,7 @@ function renderStage() {
         .filter(Boolean)
         .join(" ");
       return `<button class="${classes}" data-hotspot="${hotspot.id}" style="left:${hotspot.x}%;top:${hotspot.y}%;width:${hotspot.w}%;height:${hotspot.h}%;">
-        ${hotspotVisual(hotspot)}
+        ${hotspotVisual(hotspot, solved)}
         <span class="hotspot-label">${hotspot.label}</span>
       </button>`;
     })
