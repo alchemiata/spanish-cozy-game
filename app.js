@@ -1,3 +1,9 @@
+const greenhouseAssets = window.greenhouseAssets || {};
+
+function greenhouseAsset(key, fallback) {
+  return greenhouseAssets[key] || fallback;
+}
+
 const scenes = [
   {
     id: "bedroom",
@@ -481,6 +487,90 @@ const scenes = [
         english: "Tiny lights dance over the flowers."
       }
     ]
+  },
+  {
+    id: "greenhouse",
+    title: "The Sleepy Seedling",
+    summary: "An AI-generated greenhouse level with image-backed characters and items.",
+    palette: "greenhouse",
+    backgroundImage: greenhouseAsset("background", "assets/greenhouse-background.png"),
+    intro: ["En el invernadero, una plantita está triste.", "Luna quiere ayudar."],
+    introEnglish: "In the greenhouse, a little plant is sad. Luna wants to help.",
+    goal: "Find what the thirsty seedling needs.",
+    pickups: ["watering-can", "sun-ribbon", "garden-book"],
+    puzzle: {
+      itemId: "watering-can",
+      targetId: "seedling",
+      success: ["La plantita bebe agua.", "Ahora está feliz."],
+      successEnglish: "The little plant drinks water. Now it is happy.",
+      hint: "La plantita tiene sed. Usa la regadera.",
+      english: "The little plant is thirsty. Use the watering can."
+    },
+    hotspots: [
+      {
+        id: "greenhouse-luna",
+        label: "Luna",
+        type: "story",
+        x: 44,
+        y: 43,
+        w: 14,
+        h: 40,
+        image: greenhouseAsset("luna", "assets/greenhouse-luna.png"),
+        lines: ["Luna mira la plantita.", "Luna quiere ayudar."],
+        englishLines: ["Luna looks at the little plant.", "Luna wants to help."]
+      },
+      {
+        id: "seedling",
+        label: "plantita",
+        type: "story",
+        x: 59,
+        y: 57,
+        w: 12,
+        h: 25,
+        image: greenhouseAsset("seedling", "assets/greenhouse-seedling.png"),
+        lines: ["La plantita tiene sed.", "Sus hojas están caídas."],
+        englishLines: ["The little plant is thirsty.", "Its leaves are drooping."]
+      },
+      {
+        id: "watering-can",
+        label: "regadera",
+        type: "story",
+        x: 28,
+        y: 59,
+        w: 15,
+        h: 15,
+        image: greenhouseAsset("wateringCan", "assets/greenhouse-watering-can.png"),
+        collectable: true,
+        lines: ["Es una regadera.", "La regadera tiene agua."],
+        englishLines: ["It is a watering can.", "The watering can has water."]
+      },
+      {
+        id: "sun-ribbon",
+        label: "cinta",
+        type: "curiosity",
+        x: 70,
+        y: 42,
+        w: 11,
+        h: 18,
+        image: greenhouseAsset("sunRibbon", "assets/greenhouse-sun-ribbon.png"),
+        collectable: true,
+        lines: ["Es una cinta amarilla.", "La cinta parece un sol."],
+        englishLines: ["It is a yellow ribbon.", "The ribbon looks like a sun."]
+      },
+      {
+        id: "garden-book",
+        label: "libro",
+        type: "lore",
+        x: 18,
+        y: 42,
+        w: 12,
+        h: 18,
+        image: greenhouseAsset("gardenBook", "assets/greenhouse-garden-book.png"),
+        collectable: true,
+        lines: ["Es un libro de jardín.", "El libro muestra flores."],
+        englishLines: ["It is a garden book.", "The book shows flowers."]
+      }
+    ]
   }
 ];
 
@@ -597,7 +687,7 @@ function renderInventory() {
       if (!item) return "";
       const active = state.selectedItemId === item.id;
       return `<button class="inventory-item ${active ? "selected" : ""}" data-item="${item.id}">
-        ${iconMarkup[item.icon] || ""}
+        ${hotspotVisual(item)}
         <span>${item.label}</span>
       </button>`;
     })
@@ -611,6 +701,17 @@ function renderInventory() {
 
 function findHotspot(id) {
   return scenes.flatMap((scene) => scene.hotspots).find((hotspot) => hotspot.id === id);
+}
+
+function hotspotVisual(hotspot) {
+  if (hotspot.image) {
+    return `<img class="asset-sprite" src="${hotspot.image}" alt="" draggable="false" />`;
+  }
+  return iconMarkup[hotspot.icon] || "";
+}
+
+function hotspotEnglish(hotspot, lineIndex) {
+  return hotspot.englishLines?.[lineIndex] || hotspot.english || "";
 }
 
 function isHidden(hotspot) {
@@ -631,14 +732,15 @@ function renderStage() {
         .filter(Boolean)
         .join(" ");
       return `<button class="${classes}" data-hotspot="${hotspot.id}" style="left:${hotspot.x}%;top:${hotspot.y}%;width:${hotspot.w}%;height:${hotspot.h}%;">
-        ${iconMarkup[hotspot.icon] || ""}
+        ${hotspotVisual(hotspot)}
         <span class="hotspot-label">${hotspot.label}</span>
       </button>`;
     })
     .join("");
 
   stage.innerHTML = `
-    <div class="scene-backdrop scene-${scene.palette}">
+    <div class="scene-backdrop scene-${scene.palette} ${scene.backgroundImage ? "image-scene" : ""}">
+      ${scene.backgroundImage ? `<img class="scene-image" src="${scene.backgroundImage}" alt="" draggable="false" />` : ""}
       <div class="paper-texture"></div>
       <div class="sky"></div>
       <div class="room-line floor"></div>
@@ -672,7 +774,7 @@ function onHotspotClick(hotspotId) {
 
   state.clickCounts[hotspot.id] = (state.clickCounts[hotspot.id] || 0) + 1;
   const lineIndex = Math.min(state.clickCounts[hotspot.id] - 1, hotspot.lines.length - 1);
-  showCaption(hotspot.label, hotspot.lines[lineIndex], hotspot.english);
+  showCaption(hotspot.label, hotspot.lines[lineIndex], hotspotEnglish(hotspot, lineIndex));
 
   if (hotspot.reveals) {
     state.revealed.add(hotspot.id);
@@ -683,7 +785,7 @@ function onHotspotClick(hotspotId) {
   if (hotspot.collectable && scene.pickups.includes(hotspot.id)) {
     state.inventory.add(hotspot.id);
     state.selectedItemId = hotspot.id;
-    showCaption(hotspot.label, hotspot.lines[lineIndex], `${hotspot.english} Selected for the scene.`);
+    showCaption(hotspot.label, hotspot.lines[lineIndex], hotspotEnglish(hotspot, lineIndex));
     saveState();
     renderInventory();
     renderStage();
@@ -730,7 +832,7 @@ inventoryList.addEventListener("click", (event) => {
   const id = button.dataset.item;
   state.selectedItemId = state.selectedItemId === id ? null : id;
   const hotspot = findHotspot(id);
-  showCaption(hotspot.label, hotspot.lines[0], hotspot.english);
+  showCaption(hotspot.label, hotspot.lines[0], hotspotEnglish(hotspot, 0));
   renderInventory();
 });
 
