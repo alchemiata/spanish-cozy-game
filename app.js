@@ -37,6 +37,7 @@ const scenes = [
           "Está temblando.",
           "Quiere una manta."
         ],
+        englishLines: ["Luna is cold.", "She is shivering.", "She wants a blanket."],
         english: "Luna is cold and wants a blanket."
       },
       {
@@ -53,6 +54,7 @@ const scenes = [
           "Entra aire frío.",
           "Afuera está lloviendo."
         ],
+        englishLines: ["The window is open.", "Cold air comes in.", "Outside, it is raining."],
         english: "The window is open and cold air comes in."
       },
       {
@@ -71,6 +73,7 @@ const scenes = [
           "Luna usa la manta cuando tiene frío.",
           "La abuela hizo esta manta."
         ],
+        englishLines: ["It is a blanket.", "The blanket is soft.", "Luna uses the blanket when she is cold.", "Grandma made this blanket."],
         english: "A soft blanket. Grandma made it."
       },
       {
@@ -83,6 +86,7 @@ const scenes = [
         h: 13,
         icon: "cat",
         lines: ["El gato duerme.", "El gato está muy tranquilo."],
+        englishLines: ["The cat is sleeping.", "The cat is very calm."],
         english: "The cat is sleeping."
       },
       {
@@ -95,6 +99,7 @@ const scenes = [
         h: 18,
         icon: "plant",
         lines: ["Es una planta.", "La planta es verde."],
+        englishLines: ["It is a plant.", "The plant is green."],
         english: "A green plant."
       },
       {
@@ -107,6 +112,7 @@ const scenes = [
         h: 9,
         icon: "tea",
         lines: ["Es té caliente.", "Luna toma té cuando llueve."],
+        englishLines: ["It is hot tea.", "Luna drinks tea when it rains."],
         english: "Hot tea. Luna drinks tea when it rains."
       }
     ]
@@ -139,6 +145,7 @@ const scenes = [
         h: 25,
         icon: "luna",
         lines: ["Luna tiene hambre.", "Quiere desayunar."],
+        englishLines: ["Luna is hungry.", "She wants to eat breakfast."],
         english: "Luna is hungry and wants breakfast."
       },
       {
@@ -152,6 +159,7 @@ const scenes = [
         icon: "toast",
         collectable: true,
         lines: ["Es pan tostado.", "El pan está caliente."],
+        englishLines: ["It is toast.", "The bread is hot."],
         english: "Warm toast."
       },
       {
@@ -165,6 +173,7 @@ const scenes = [
         icon: "apple",
         collectable: true,
         lines: ["Es una manzana.", "La manzana es roja."],
+        englishLines: ["It is an apple.", "The apple is red."],
         english: "A red apple."
       },
       {
@@ -177,6 +186,7 @@ const scenes = [
         h: 17,
         icon: "milk",
         lines: ["Es leche.", "La leche está fría."],
+        englishLines: ["It is milk.", "The milk is cold."],
         english: "Cold milk."
       },
       {
@@ -189,6 +199,7 @@ const scenes = [
         h: 10,
         icon: "coffee",
         lines: ["Es café.", "El café es para la vecina."],
+        englishLines: ["It is coffee.", "The coffee is for the neighbor."],
         english: "Coffee for the neighbor."
       },
       {
@@ -201,6 +212,7 @@ const scenes = [
         h: 42,
         icon: "fridge",
         lines: ["El refrigerador está frío.", "Hay comida en la cocina."],
+        englishLines: ["The refrigerator is cold.", "There is food in the kitchen."],
         english: "The fridge is cold."
       }
     ]
@@ -233,6 +245,7 @@ const scenes = [
         h: 24,
         icon: "luna",
         lines: ["Luna busca su llave.", "Está un poco preocupada."],
+        englishLines: ["Luna is looking for her key.", "She is a little worried."],
         english: "Luna is looking for her key."
       },
       {
@@ -246,7 +259,8 @@ const scenes = [
         icon: "pot",
         reveals: "key",
         lines: ["Hay una maceta.", "La maceta se mueve.", "Una llave."],
-        english: "The flower pot moves. A key appears."
+        englishLines: ["There is a flower pot.", "The flower pot moves.", "A key."],
+        english: "There is a flower pot. The flower pot moves. A key."
       },
       {
         id: "key",
@@ -260,6 +274,7 @@ const scenes = [
         collectable: true,
         hiddenUntil: "pot",
         lines: ["Es una llave.", "La llave es pequeña."],
+        englishLines: ["It is a key.", "The key is small."],
         english: "A small key."
       },
       {
@@ -272,6 +287,7 @@ const scenes = [
         h: 18,
         icon: "mailbox",
         lines: ["El buzón está cerrado.", "Hay una carta para Luna."],
+        englishLines: ["The mailbox is closed.", "There is a letter for Luna."],
         english: "The mailbox is closed."
       },
       {
@@ -284,6 +300,7 @@ const scenes = [
         h: 27,
         icon: "umbrella",
         lines: ["Es un paraguas amarillo.", "El paraguas está seco."],
+        englishLines: ["It is a yellow umbrella.", "The umbrella is dry."],
         english: "A yellow umbrella."
       },
       {
@@ -296,6 +313,7 @@ const scenes = [
         h: 14,
         icon: "bike",
         lines: ["La bicicleta está junto a la casa.", "Carlos arregló la bicicleta ayer."],
+        englishLines: ["The bicycle is next to the house.", "Carlos fixed the bicycle yesterday."],
         english: "The bike is beside the house. Carlos fixed it yesterday."
       }
     ]
@@ -328,6 +346,7 @@ const scenes = [
         h: 26,
         icon: "customer",
         lines: ["La persona espera.", "Quiere café con leche."],
+        englishLines: ["The person is waiting.", "They want coffee with milk."],
         english: "The customer is waiting for coffee with milk."
       },
       {
@@ -340,6 +359,7 @@ const scenes = [
         h: 26,
         icon: "barista",
         lines: ["La barista prepara café.", "La taza está lista."],
+        englishLines: ["The barista prepares coffee.", "The cup is ready."],
         english: "The barista is making coffee."
       },
       {
@@ -353,6 +373,7 @@ const scenes = [
         icon: "coffee",
         collectable: true,
         lines: ["Es café con leche.", "La bebida está caliente."],
+        englishLines: ["It is coffee with milk.", "The drink is hot."],
         english: "Coffee with milk."
       },
       {
@@ -366,6 +387,7 @@ const scenes = [
         icon: "tea",
         collectable: true,
         lines: ["Es té.", "El té huele a menta."],
+        englishLines: ["It is tea.", "The tea smells like mint."],
         english: "Mint tea."
       },
       {
@@ -378,6 +400,7 @@ const scenes = [
         h: 13,
         icon: "table",
         lines: ["Hay una mesa pequeña.", "Dos amigos se sientan aquí."],
+        englishLines: ["There is a small table.", "Two friends sit here."],
         english: "A small table."
       },
       {
@@ -390,6 +413,7 @@ const scenes = [
         h: 18,
         icon: "menu",
         lines: ["El menú dice café, leche y pan.", "Este café abre temprano."],
+        englishLines: ["The menu says coffee, milk, and bread.", "This cafe opens early."],
         english: "The menu says coffee, milk, and bread."
       }
     ]
@@ -422,6 +446,7 @@ const scenes = [
         h: 24,
         icon: "luna",
         lines: ["Luna está feliz.", "Quiere ayudar con la fiesta."],
+        englishLines: ["Luna is happy.", "She wants to help with the party."],
         english: "Luna is happy and wants to help."
       },
       {
@@ -434,6 +459,7 @@ const scenes = [
         h: 30,
         icon: "arch",
         lines: ["Hay un arco para la fiesta.", "El arco necesita luz."],
+        englishLines: ["There is an arch for the party.", "The arch needs light."],
         english: "The festival arch needs light."
       },
       {
@@ -447,6 +473,7 @@ const scenes = [
         icon: "lantern",
         collectable: true,
         lines: ["Es una linterna.", "La linterna brilla en la noche."],
+        englishLines: ["It is a lantern.", "The lantern shines in the night."],
         english: "A lantern that glows at night."
       },
       {
@@ -460,6 +487,7 @@ const scenes = [
         icon: "flower",
         collectable: true,
         lines: ["Es una flor.", "La flor es para la mesa."],
+        englishLines: ["It is a flower.", "The flower is for the table."],
         english: "A flower for the table."
       },
       {
@@ -472,6 +500,7 @@ const scenes = [
         h: 14,
         icon: "drum",
         lines: ["Es un tambor.", "El tambor suena fuerte."],
+        englishLines: ["It is a drum.", "The drum sounds loud."],
         english: "A drum."
       },
       {
@@ -484,6 +513,7 @@ const scenes = [
         h: 20,
         icon: "fireflies",
         lines: ["Hay luces pequeñas.", "Las luces bailan sobre las flores."],
+        englishLines: ["There are little lights.", "The lights dance over the flowers."],
         english: "Tiny lights dance over the flowers."
       }
     ]
@@ -669,7 +699,7 @@ function showCaption(name, lines, english = "") {
 function renderSceneList() {
   sceneList.innerHTML = scenes
     .map((scene, index) => {
-      const locked = index > 0 && !state.completed.has(scenes[index - 1].id);
+      const locked = index > 0 && scene.id !== "greenhouse" && !state.completed.has(scenes[index - 1].id);
       const active = index === state.sceneIndex;
       return `<button class="scene-step ${active ? "active" : ""}" data-scene="${index}" ${locked ? "disabled" : ""}>
         <span>${index + 1}</span>
